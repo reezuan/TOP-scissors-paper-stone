@@ -7,6 +7,56 @@
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
-    
+        <script>
+            /*
+            When a user opens the page, initialise a function called game.
+            Send a welcome message via browser alert & ask the user if they are ready to play.
+            If the user does not agree to play, close the game.
+            If the user agrees to play, initialise a counter variable to note the number of rounds played, the user's score, and the computer's score.
+            While the number of rounds played is less than 5, play each round by:
+                Getting the player's choice via getPlayerChoice.
+                Getting the computer's choice via getComputerChoice.
+                Comparing both choices & see who wins that round via playRound.
+                If playRound returns "user", increment the user's score & the number of rounds played by 1.
+                If playRound returns "computer", increment the computer's score & the number of rounds played by 1.
+                If playRound returns "draw", do not increment anything & repeat that round.
+            Once the number of rounds played is 5, stop the game & see who has won more rounds.
+                If player has won more rounds, print a victory message.
+                If computer has won more rounds, print a defeat message.
+            
+            Initialise a function called getPlayerChoice that does the following:
+                Asks the user to input 'Scissors', 'Paper', or 'Stone' (case-insensitive).
+                If the user inputs anything other than 'Scissors', 'Paper', or 'Stone', print an error message & ask the user to input their answer correctly.
+                If the user inputs either one of the three possible answers, return their answer.
+
+            Initialise a function called getComputerChoice that does the following:
+                Initialise a variable & set its value randomly to 0, 1, or 2.
+                If 0, getComputerChoice returns 'Scissors'.
+                If 1, getComputerChoice returns 'Paper'.
+                If 2, getComputerChoice returns 'Stone'.
+
+            Initialise a function called playRound that does the following:
+                Takes the user's answer & the value returned by getComputerChoice as inputs.
+                Compare the user's input & the computer's input to see who wins that round.
+                If the user wins that round, return "user".
+                If the computer wins that round, return "computer".
+                If there is a tie, return "draw".
+            */
+
+            /*
+                function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+    }
+
+    console.log(getRandomInt(3));
+    // Expected output: 0, 1 or 2
+
+    console.log(getRandomInt(1));
+    // Expected output: 0
+
+    console.log(Math.random());
+    // Expected output: a number from 0 to <1
+    */
+        </script>
     </body>
 </html>
