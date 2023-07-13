@@ -47,7 +47,7 @@
                 if (!confirm("Do you want to play the game?")) {
                     alert("You're not playing? Aw :(");
                 } else {
-                    alert("Let's play!");
+                    alert("Let's play! The player who wins the most out of 5 rounds wins.");
 
                     // Initialise counter variables for no. of rounds played, user's score, and computer's score.
                     let roundsPlayed = 0;
@@ -55,12 +55,28 @@
                     let computerScore = 0;
 
                     while (roundsPlayed < 5) {
-                        roundsPlayed++;
+                        let userChoice = getUserChoice();
+                        let computerChoice = getComputerChoice();
+                        let roundWinner = playRound(userChoice,computerChoice);
+                        
+                        if (roundWinner === "draw") {
+                            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. It's a draw!`);
+                        } else if (roundWinner === "user") {
+                            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You win!`);
+                            userScore++;
+                            roundsPlayed++;
+                        } else {
+                            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You lose D:`);
+                            computerScore++;
+                            roundsPlayed++;
+                        }
+
+                        alert(`You currently have ${userScore} points. The computer has ${computerScore} points.`);
                     }
                 }
             }
             
-            function getPlayerChoice() {
+            function getUserChoice() {
                 let userChoice;
 
                 while (userChoice !== "scissors" && userChoice !== "paper" && userChoice !== "stone") {
