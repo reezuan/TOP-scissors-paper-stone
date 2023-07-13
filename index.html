@@ -84,7 +84,13 @@
             }
 
             function playRound(userChoice,computerChoice) {
-
+                if (userChoice === computerChoice) {
+                    return "draw";
+                } else if ((userChoice === "scissors" && computerChoice === "paper") || (userChoice === "paper" && computerChoice === "stone") || (userChoice === "stone" && computerChoice === "scissors")) {
+                    return "user";
+                } else {
+                    return "computer";
+                }
             }
 
             game();
