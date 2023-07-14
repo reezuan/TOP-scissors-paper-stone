@@ -73,6 +73,12 @@
 
                         alert(`You currently have ${userScore} point${userScore === 1 ? "" : "s"}. The computer has ${computerScore} point${computerScore === 1 ? "" : "s"}.`);
                     }
+
+                    if (userScore > computerScore) {
+                        alert("You have emerged... victorious. While the battle wages on, know that, for today at least, you have struck fear in the machines.");
+                    } else {
+                        alert("The machines have won. While the battle wages on & all hope is not lost yet, humanity has suffered a major defeat today.");
+                    }
                 }
             }
             
