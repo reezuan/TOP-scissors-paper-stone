@@ -54,7 +54,7 @@
                     let userScore = 0;
                     let computerScore = 0;
 
-                    while (roundsPlayed < 5) {
+                    while (roundsPlayed < 5 && userScore < 3 && computerScore < 3) {
                         let userChoice = getUserChoice();
                         let computerChoice = getComputerChoice();
                         let roundWinner = playRound(userChoice,computerChoice);
