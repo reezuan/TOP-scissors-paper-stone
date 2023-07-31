@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:wght@400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #E0E1E0;
+}
+
+/* Top bar */
+
+h2 {
+    font-family: Poppins, Helvetica, sans-serif;
+}
+
+.top-bar {
+    background-color: #1A1A1A;
+    color: white;
+    margin: 0 0 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-bar h1 {
+    font-family: "Bowlby One", Helvetica, sans-serif;
+    font-size: 120px;
+    margin: 20px 0 0 0;
+    letter-spacing: 0.03em;
+}
+
+.top-bar h2 {
+    font-size: 60px;
+    margin: 0 0 40px 0;
+    letter-spacing: 0.03em;
+}
+
+/* Fighter selection screen */
+
+.selection-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selection-screen h2 {
+    font-size: 85px;
+    margin: 0 0 60px 0;
+}
+
+.fighter-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 0 30px;
+    row-gap: 6rem;
+}
+
+.fighter {
+    border: solid 0.5rem #DCE359;
+    border-radius: 30px;
+    background-color: white;
+
+}
+
+.fighter img {
+    border-radius: 30px;
+}
+
+.fighter.hover {
+    transform: scale(1.1);
+}
