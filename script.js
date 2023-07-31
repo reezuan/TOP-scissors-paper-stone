@@ -4,6 +4,19 @@ User picks the player they want to play as.
 Once they choose, elements currently on screen will fade out & main game elements will transition in.
 */
     
+const fighters = document.querySelectorAll(".fighter");
+fighters.forEach((fighter) => {
+    // Add the 'hover' class when the cursor is over any of the fighters.
+    fighter.addEventListener("mouseover", () => {
+        fighter.classList.toggle("hover");
+    });
+
+    // Remove the 'hover' class when the cursor leaves the fighter's image.
+    fighter.addEventListener("mouseout", () => {
+        fighter.classList.toggle("hover");
+    });
+});
+
 function game() {
     if (!confirm("Do you want to play the game?")) {
         alert("You're not playing? Aw :(");
