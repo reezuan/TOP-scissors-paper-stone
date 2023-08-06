@@ -2,6 +2,12 @@
 When user lands on the page, it'll show a dog on the left & a cat on the right. Can use this Google search for ideas: cats vs dogs war
 User picks the player they want to play as.
 Once they choose, elements currently on screen will fade out & main game elements will transition in.
+
+When user clicks on any of the fighters to select their fighter, everything will transition out.
+Then, their choser fighter will transition in on the left side of the screen.
+The antagonist will transition in on the right side of the screen.
+
+** Figure out how to remove event listeners from the rest of the images after one has been selected. **
 */
     
 const fighters = document.querySelectorAll(".fighter");
@@ -15,7 +21,26 @@ fighters.forEach((fighter) => {
     fighter.addEventListener("mouseout", () => {
         fighter.classList.toggle("hover");
     });
+
+    fighter.addEventListener("click", selectFighter, {
+        once: true
+    });
 });
+
+
+function selectFighter(event) {
+    const selectionScreen = document.querySelector(".selection-screen");
+    const selectedFighter = event.srcElement.parentElement.dataset.fighter;
+    // const selectedFighter = document.querySelector(`div[data-fighter="${event.srcElement.parentElement.dataset.fighter}"]`);
+    
+    selectionScreen.addEventListener("transitionend", () => {
+        // selectionScreen.remove();
+        selectionScreen.style.display = "none";
+    });
+    
+    selectionScreen.classList.toggle("character-selected");
+    console.log(selectedFighter);
+}
 
 function game() {
     if (!confirm("Do you want to play the game?")) {
