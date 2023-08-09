@@ -6,40 +6,46 @@ Once they choose, elements currently on screen will fade out & main game element
 When user clicks on any of the fighters to select their fighter, everything will transition out.
 Then, their choser fighter will transition in on the left side of the screen.
 The antagonist will transition in on the right side of the screen.
-
-** Figure out how to remove event listeners from the rest of the images after one has been selected. **
 */
     
-const fighters = document.querySelectorAll(".fighter");
-fighters.forEach((fighter) => {
-    // Add the 'hover' class when the cursor is over any of the fighters.
-    fighter.addEventListener("mouseover", () => {
-        fighter.classList.toggle("hover");
+function initialiseSelectionScreen() {
+    const fighters = document.querySelectorAll(".fighter");
+    fighters.forEach((fighter) => {
+        // Add the 'hover' class when the cursor is over any of the fighters.
+        fighter.addEventListener("mouseover", () => {
+            fighter.classList.toggle("hover");
+        });
+    
+        // Remove the 'hover' class when the cursor leaves the fighter's image.
+        fighter.addEventListener("mouseout", () => {
+            fighter.classList.toggle("hover");
+        });
+    
+        fighter.addEventListener("click", selectFighter, {
+            once: true
+        });
     });
-
-    // Remove the 'hover' class when the cursor leaves the fighter's image.
-    fighter.addEventListener("mouseout", () => {
-        fighter.classList.toggle("hover");
-    });
-
-    fighter.addEventListener("click", selectFighter, {
-        once: true
-    });
-});
-
+}
 
 function selectFighter(event) {
     const selectionScreen = document.querySelector(".selection-screen");
     const selectedFighter = event.srcElement.parentElement.dataset.fighter;
-    // const selectedFighter = document.querySelector(`div[data-fighter="${event.srcElement.parentElement.dataset.fighter}"]`);
+    const gameScreen = document.querySelector(".game-screen");
+
+    setPlayerCharacter(selectedFighter); // Set the player character's image filepath first.
     
     selectionScreen.addEventListener("transitionend", () => {
-        // selectionScreen.remove();
         selectionScreen.style.display = "none";
+        gameScreen.style.display = "flex";
+        gameScreen.classList.add("active"); // Have to use 'add' because 'toggle' doesn't work.
     });
     
     selectionScreen.classList.toggle("character-selected");
-    console.log(selectedFighter);
+}
+
+function setPlayerCharacter(chosenCharacter) {
+    const playerCharacterImage = document.querySelector("#player-character");
+    playerCharacterImage.setAttribute("src", `assets/${chosenCharacter}.png`);
 }
 
 function game() {
@@ -115,3 +121,5 @@ function playRound(userChoice,computerChoice) {
 }
 
 // game();
+
+initialiseSelectionScreen();

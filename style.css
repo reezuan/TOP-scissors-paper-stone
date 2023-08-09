@@ -6,7 +6,7 @@
 
 body {
     margin: 0;
-    padding: 0 0 80px 0;
+    padding: 0 0 20px 0;
     background-color: #E0E1E0;
 }
 
@@ -79,4 +79,69 @@ h2 {
 
 .fighter.hover {
     transform: scale(1.1);
+}
+
+/* Game screen */
+
+.game-screen {
+    height: 100%;
+    visibility: hidden;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    transition: all ease 2s;
+}
+
+.game-screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.main-game {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.player-side {
+    align-self: flex-end;
+}
+
+.choice-menu {
+    display: flex;
+    gap: 6em;
+    align-items: center;
+}
+
+.choice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E0D4CA;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.choice img {
+    max-width: 90px;
+    height: auto;
+}
+
+.choice p {
+    font-family: "Open Sans";
+    font-size: 20px;
+}
+
+.player-side, .computer-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score-counter {
+    font-family: "Open Sans", Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 80px;
 }
