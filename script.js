@@ -48,42 +48,47 @@ function setPlayerCharacter(chosenCharacter) {
     playerCharacterImage.setAttribute("src", `assets/${chosenCharacter}.png`);
 }
 
+function initialiseGameScreen() {
+    const choices = document.querySelectorAll(".choice");
+    choices.forEach((choice) => {
+        choice.addEventListener("click", recordChoice);
+    });
+}
+
+function recordChoice(event) {
+    console.log(event.target.parentElement.attributes.id.nodeValue);
+}
+
 function game() {
-    if (!confirm("Do you want to play the game?")) {
-        alert("You're not playing? Aw :(");
-    } else {
-        alert("Let's play! The player who wins the most out of 5 rounds wins.");
+    // Initialise counter variables for no. of rounds played, user's score, and computer's score.
+    let roundsPlayed = 0;
+    let userScore = 0;
+    let computerScore = 0;
 
-        // Initialise counter variables for no. of rounds played, user's score, and computer's score.
-        let roundsPlayed = 0;
-        let userScore = 0;
-        let computerScore = 0;
-
-        while (roundsPlayed < 5 && userScore < 3 && computerScore < 3) {
-            let userChoice = getUserChoice();
-            let computerChoice = getComputerChoice();
-            let roundWinner = playRound(userChoice,computerChoice);
-            
-            if (roundWinner === "draw") {
-                alert(`You chose ${userChoice} and the computer chose ${computerChoice}. It's a draw!`);
-            } else if (roundWinner === "user") {
-                alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You win!`);
-                userScore++;
-                roundsPlayed++;
-            } else {
-                alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You lose D:`);
-                computerScore++;
-                roundsPlayed++;
-            }
-
-            alert(`You currently have ${userScore} point${userScore === 1 ? "" : "s"}. The computer has ${computerScore} point${computerScore === 1 ? "" : "s"}.`);
-        }
-
-        if (userScore > computerScore) {
-            alert("You have emerged... victorious. While the battle wages on, know that, for today at least, you have struck fear in the machines.");
+    while (roundsPlayed < 5 && userScore < 3 && computerScore < 3) {
+        let userChoice = getUserChoice();
+        let computerChoice = getComputerChoice();
+        let roundWinner = playRound(userChoice,computerChoice);
+        
+        if (roundWinner === "draw") {
+            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. It's a draw!`);
+        } else if (roundWinner === "user") {
+            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You win!`);
+            userScore++;
+            roundsPlayed++;
         } else {
-            alert("The machines have won. While the battle wages on & all hope is not lost yet, humanity has suffered a major defeat today.");
+            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You lose D:`);
+            computerScore++;
+            roundsPlayed++;
         }
+
+        alert(`You currently have ${userScore} point${userScore === 1 ? "" : "s"}. The computer has ${computerScore} point${computerScore === 1 ? "" : "s"}.`);
+    }
+
+    if (userScore > computerScore) {
+        alert("You have emerged... victorious. While the battle wages on, know that, for today at least, you have struck fear in the machines.");
+    } else {
+        alert("The machines have won. While the battle wages on & all hope is not lost yet, humanity has suffered a major defeat today.");
     }
 }
 
@@ -123,3 +128,4 @@ function playRound(userChoice,computerChoice) {
 // game();
 
 initialiseSelectionScreen();
+initialiseGameScreen();
