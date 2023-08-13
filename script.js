@@ -1,13 +1,24 @@
-/*
-When user lands on the page, it'll show a dog on the left & a cat on the right. Can use this Google search for ideas: cats vs dogs war
-User picks the player they want to play as.
-Once they choose, elements currently on screen will fade out & main game elements will transition in.
+function game() {
+    while (roundsPlayed < 5 && userScore < 3 && computerScore < 3) {
+        let computerChoice = getComputerChoice();
 
-When user clicks on any of the fighters to select their fighter, everything will transition out.
-Then, their choser fighter will transition in on the left side of the screen.
-The antagonist will transition in on the right side of the screen.
-*/
-    
+
+        let roundWinner = playRound(userChoice,computerChoice);
+        
+        if (roundWinner === "draw") {
+            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. It's a draw!`);
+        } else if (roundWinner === "user") {
+            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You win!`);
+            userScore++;
+            roundsPlayed++;
+        } else {
+            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You lose D:`);
+            computerScore++;
+            roundsPlayed++;
+        }
+    }
+}
+
 function initialiseSelectionScreen() {
     const fighters = document.querySelectorAll(".fighter");
     fighters.forEach((fighter) => {
@@ -51,81 +62,48 @@ function setPlayerCharacter(chosenCharacter) {
 function initialiseGameScreen() {
     const choices = document.querySelectorAll(".choice");
     choices.forEach((choice) => {
-        choice.addEventListener("click", recordChoice);
+        choice.addEventListener("click", playRound);
     });
 }
 
-function recordChoice(event) {
-    console.log(event.target.parentElement.attributes.id.nodeValue);
-}
-
-function game() {
-    // Initialise counter variables for no. of rounds played, user's score, and computer's score.
-    let roundsPlayed = 0;
-    let userScore = 0;
-    let computerScore = 0;
-
-    while (roundsPlayed < 5 && userScore < 3 && computerScore < 3) {
-        let userChoice = getUserChoice();
-        let computerChoice = getComputerChoice();
-        let roundWinner = playRound(userChoice,computerChoice);
-        
-        if (roundWinner === "draw") {
-            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. It's a draw!`);
-        } else if (roundWinner === "user") {
-            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You win!`);
-            userScore++;
-            roundsPlayed++;
-        } else {
-            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You lose D:`);
-            computerScore++;
-            roundsPlayed++;
-        }
-
-        alert(`You currently have ${userScore} point${userScore === 1 ? "" : "s"}. The computer has ${computerScore} point${computerScore === 1 ? "" : "s"}.`);
-    }
-
-    if (userScore > computerScore) {
-        alert("You have emerged... victorious. While the battle wages on, know that, for today at least, you have struck fear in the machines.");
-    } else {
-        alert("The machines have won. While the battle wages on & all hope is not lost yet, humanity has suffered a major defeat today.");
-    }
-}
-
-function getUserChoice() {
-    let userChoice;
-
-    while (userChoice !== "scissors" && userChoice !== "paper" && userChoice !== "stone") {
-        userChoice = prompt("Time to make a choice! Enter either Scissors, Paper, or Stone.").toLowerCase();
-    }
-
-    return userChoice;
-}
-
 function getComputerChoice() {
+    const possibleChoices = ["scissors", "paper", "stone"];
     let computerChoice = Math.floor(Math.random() * 3);
-    console.log(`Computer choice is ${computerChoice}`);
-
-    if (computerChoice === 0) {
-        return "scissors";
-    } else if (computerChoice === 1) {
-        return "paper";
-    } else {
-        return "stone";
-    }
+    console.log(`Computer choice is ${possibleChoices[computerChoice]}`);
+    
+    return possibleChoices[computerChoice];
 }
 
-function playRound(userChoice,computerChoice) {
+function playRound(event) {
+    // Get the current score of the user & the computer.
+    let userScore = document.querySelector("#user-score");
+    let computerScore = document.querySelector("#computer-score");
+    
+    // Store the user's & computer's choice for this round in variables.
+    const userChoice = event.target.parentElement.attributes.id.nodeValue;
+    const computerChoice = getComputerChoice();
+    
     if (userChoice === computerChoice) {
-        return "draw";
-    } else if ((userChoice === "scissors" && computerChoice === "paper") || (userChoice === "paper" && computerChoice === "stone") || (userChoice === "stone" && computerChoice === "scissors")) {
-        return "user";
+        // Show on screen that it's a draw.
+        console.log("Draw!");
+    } else if ((userChoice === "scissors" && computerChoice === "paper") ||
+    (userChoice === "paper" && computerChoice === "stone") ||
+    (userChoice === "stone" && computerChoice === "scissors")) {
+        // Show on screen that user won.
+        
+        // Increase the user score.
+        userScore.textContent = +userScore.textContent + 1
     } else {
-        return "computer";
+        // Show on screen that computer won.
+        
+        // Increase the computer score.
+        computerScore.textContent = +computerScore.textContent + 1
+    }
+
+    if (+userScore < 3 && computerScore < 3) {
+        // Run a function to initialise the final screen.
     }
 }
-
-// game();
 
 initialiseSelectionScreen();
 initialiseGameScreen();
