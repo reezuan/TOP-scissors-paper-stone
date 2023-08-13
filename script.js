@@ -1,24 +1,3 @@
-function game() {
-    while (roundsPlayed < 5 && userScore < 3 && computerScore < 3) {
-        let computerChoice = getComputerChoice();
-
-
-        let roundWinner = playRound(userChoice,computerChoice);
-        
-        if (roundWinner === "draw") {
-            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. It's a draw!`);
-        } else if (roundWinner === "user") {
-            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You win!`);
-            userScore++;
-            roundsPlayed++;
-        } else {
-            alert(`You chose ${userChoice} and the computer chose ${computerChoice}. You lose D:`);
-            computerScore++;
-            roundsPlayed++;
-        }
-    }
-}
-
 function initialiseSelectionScreen() {
     const fighters = document.querySelectorAll(".fighter");
     fighters.forEach((fighter) => {
