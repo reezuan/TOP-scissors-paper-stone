@@ -94,9 +94,16 @@ h2 {
     transition: all ease 2s;
 }
 
-.game-screen.active {
+.active {
     opacity: 1;
-    visibility: visible;
+}
+
+.game-over {
+    transition-delay: 1s;
+}
+
+.game-screen h2 {
+    font-size: 32px;
 }
 
 .main-game {
@@ -122,6 +129,7 @@ h2 {
     background-color: #E0D4CA;
     padding: 20px;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .choice img {
@@ -144,4 +152,19 @@ h2 {
     font-family: "Open Sans", Poppins, sans-serif;
     font-weight: 500;
     font-size: 80px;
+}
+
+/* Final screen */
+
+.final-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.final-text {
+    max-width: 600px;
+    font-size: 40px;
+    line-height: 70px;
 }
